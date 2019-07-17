@@ -1,8 +1,11 @@
 HELP.md
 /target/
 server/target
+server/jenkins
+client/node
+client/target
 !.mvn/wrapper/maven-wrapper.jar
-
+files
 ### STS ###
 .apt_generated
 .classpath
@@ -11,7 +14,8 @@ server/target
 .settings
 .springBeans
 .sts4-cache
-
+.vs
+.DS_Store
 ### IntelliJ IDEA ###
 .idea
 *.iws

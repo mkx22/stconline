@@ -1,6 +1,7 @@
 package com.example.stc.service;
 
 import com.example.stc.domain.Entrust;
+import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
 
@@ -17,19 +18,24 @@ public interface EntrustService extends BaseService<Entrust> {
     List<Entrust> findAllEntrusts();
 
     /**
-     * 通过主键ID查询单个委托记录
+     * 依据用户权限获取委托
      */
-    Entrust findEntrustById(String id);
+    List<Entrust> findEntrustsByAuthority();
+
+    /**
+     * 获取待办委托
+     */
+    List<Entrust> findToDoEntrustsByAuthority();
+
+    /**
+     * 获取某用户全部委托
+     */
+    List<Entrust> findEntrustsByUser(String uid);
 
     /**
      * 通过委托ID查询单个委托记录
      */
     Entrust findEntrustByPid(String pid);
-
-    /**
-     * 通过主键ID删除单个委托记录
-     */
-    void deleteEntrustById(String id);
 
     /**
      * 通过委托ID删除单个委托记录
@@ -48,4 +54,13 @@ public interface EntrustService extends BaseService<Entrust> {
      * 若委托记录不存在，将报异常
      * */
     Entrust updateEntrust(String pid, Entrust record);
+
+    /**
+     * 修改流程状态, 添加评审意见
+     * @param pid
+     * @param processState
+     * @param comment
+     * @return
+     */
+    Entrust updateProcessState(String pid, String processState, String comment);
 }
